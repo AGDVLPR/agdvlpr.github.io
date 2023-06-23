@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AlexandreGiel PRO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .table>:not(caption)>*>* {
+            padding: .5rem .5rem;
+            color: var(--bs-table-color-state,var(--bs-table-color-type,var(--bs-table-color)));
+            background-color: transparent;
+            border-bottom-width: var(--bs-border-width);
+            box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state,var(--bs-table-bg-type,var(--bs-table-accent-bg)));
+        }
+        .card-header:first-child {
+            border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;
+        }
+        .card-header {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            height: 60px;
+            padding-bottom: calc(var(--bs-card-spacer-y)*.5);
+            padding-top: calc(var(--bs-card-spacer-y)*.5);
+        }
+        .card > * {
+            flex-shrink: 0;
+        }
+        .card-header {
+            background-color: var(--bs-card-cap-bg);
+            border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+            color: var(--bs-card-cap-color);
+            margin-bottom: 0;
+            padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+        }
+        .todo .custom-control-input:checked + .custom-control-label {
+            height: 20px;
+            background: linear-gradient(90deg, #FFF205 0%, #DEF470 3%, #EFE410 60%, #F0F470 100%);
+            border-radius: 2px 3px 2px 2px;
+            mix-blend-mode: multiply;
+            transform: skewX(-10deg);
+            opacity: .6;
+        }
+        .nav-item .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+            color: black;
+            background-color: #444cf7;
+            border-color: transparent;
+        }
+        .nav-tabs .nav-link {
+            font-size: .875rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            padding: .5rem;
+            transition: color .35s ease-out;
+            color: black;
+        }
+
+        .nav-item .nav-link:not(.active) {
+            color: rgba(33, 37, 41, 0.5);
+        }
+        .bg-pattern{
+            background-color: #e5e5f7;
+            background-image:  radial-gradient(#444cf7 1.55px, transparent 1.55px), radial-gradient(#444cf7 1.55px, #e5e5f7 1.55px);
+            background-size: 62px 62px;
+            background-position: 0 0,31px 31px;
+            width: 100%;
+            height: 400px;
+        }
+        .bg-pattern-dark{
+            background-color: #212529;
+            background-image:  radial-gradient(#444cf7 1.55px, transparent 1.55px), radial-gradient(#444cf7 1.55px, #212529 1.55px);
+            background-size: 62px 62px;
+            background-position: 0 0,31px 31px;
+            width: 100%;
+            height: 400px;
+        }
+
+        .btn-dark {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: #444cf7;
+            --bs-btn-border-color: #444cf7;
+            --bs-btn-hover-color: #444cf7;
+            --bs-btn-hover-bg: #fff;
+            --bs-btn-hover-border-color: #444cf7;
+            --bs-btn-focus-shadow-rgb: 66,70,73;
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: #4d5154;
+            --bs-btn-active-border-color: #373b3e;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #fff;
+            --bs-btn-disabled-bg: #212529;
+            --bs-btn-disabled-border-color: #212529;
+        }
+        .testbutton {
+            font-family: arial;
+            color: #FFFFFF !important;
+            font-size: 16px;
+             box-shadow: 6px 7px 9px #9C9FF7;
+            padding: 17px 36px;
+            border-radius: 10px;
+            border: 2px solid #444CF7;
+            background: #444CF7;
+        }
+        .testbutton:hover {
+            color: #444CF7 !important;
+            background: #fff;
+            box-shadow: 6px 7px 9px #9C9FF7;
+            border: 2px solid #444CF7;
+        }
+
+        .cursor-pointer:hover{
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='29' fill='none' viewBox='0 0 28 29'%3E%3Cpath fill='%23fff' d='M6.84 21.83c-.47-.6-1.05-1.82-2.07-3.34-.58-.83-2.01-2.41-2.45-3.23a2.1 2.1 0 0 1-.25-1.67 2.2 2.2 0 0 1 2.39-1.67c.85.18 1.63.6 2.25 1.2.43.41.82.85 1.18 1.32.27.34.33.47.63.85.3.39.5.77.35.2-.11-.83-.31-2.23-.6-3.48-.21-.95-.26-1.1-.46-1.82s-.32-1.32-.54-2.13c-.2-.8-.35-1.62-.46-2.44a4.7 4.7 0 0 1 .43-3.08c.58-.55 1.44-.7 2.17-.37a4.4 4.4 0 0 1 1.57 2.17c.43 1.07.72 2.19.86 3.33.27 1.67.79 4.1.8 4.6 0-.61-.11-1.91 0-2.5.12-.6.54-1.1 1.12-1.33.5-.15 1.02-.19 1.53-.1.52.1.98.4 1.29.83.38.98.6 2 .63 3.05.04-.91.2-1.82.47-2.7.28-.39.68-.67 1.15-.8.55-.1 1.11-.1 1.66 0 .46.15.85.44 1.14.82.35.88.56 1.82.63 2.77 0 .23.12-.65.48-1.24a1.67 1.67 0 1 1 3.17 1.07v3.77c-.06.97-.2 1.94-.4 2.9-.29.85-.7 1.65-1.2 2.38-.8.9-1.48 1.92-1.98 3.02a6.67 6.67 0 0 0 .03 3.2c-.68.07-1.37.07-2.05 0-.65-.1-1.45-1.4-1.67-1.8a.63.63 0 0 0-1.13 0c-.37.64-1.18 1.79-1.75 1.85-1.12.14-3.42 0-5.23 0 0 0 .3-1.66-.39-2.27-.68-.6-1.38-1.3-1.9-1.76l-1.4-1.6Z'/%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.25' d='M6.84 21.83c-.47-.6-1.05-1.82-2.07-3.34-.58-.83-2.01-2.41-2.45-3.23a2.1 2.1 0 0 1-.25-1.67 2.2 2.2 0 0 1 2.39-1.67c.85.18 1.63.6 2.25 1.2.43.41.82.85 1.18 1.32.27.34.33.47.63.85.3.39.5.77.35.2-.11-.83-.31-2.23-.6-3.48-.21-.95-.26-1.1-.46-1.82s-.32-1.32-.54-2.13c-.2-.8-.35-1.62-.46-2.44a4.7 4.7 0 0 1 .43-3.08c.58-.55 1.44-.7 2.17-.37a4.4 4.4 0 0 1 1.57 2.17c.43 1.07.72 2.19.86 3.33.27 1.67.79 4.1.8 4.6 0-.61-.11-1.91 0-2.5.12-.6.54-1.1 1.12-1.33.5-.15 1.02-.19 1.53-.1.52.1.98.4 1.29.83.38.98.6 2 .63 3.05.04-.91.2-1.82.47-2.7.28-.39.68-.67 1.15-.8.55-.1 1.11-.1 1.66 0 .46.15.85.44 1.14.82.35.88.56 1.82.63 2.77 0 .23.12-.65.48-1.24a1.67 1.67 0 1 1 3.17 1.07v3.77c-.06.97-.2 1.94-.4 2.9-.29.85-.7 1.65-1.2 2.38-.8.9-1.48 1.92-1.98 3.02a6.67 6.67 0 0 0 .03 3.2c-.68.07-1.37.07-2.05 0-.65-.1-1.45-1.4-1.67-1.8a.63.63 0 0 0-1.13 0c-.37.64-1.18 1.79-1.75 1.85-1.12.14-3.42 0-5.23 0 0 0 .3-1.66-.39-2.27-.68-.6-1.38-1.3-1.9-1.76l-1.4-1.6Z' clip-rule='evenodd'/%3E%3Cpath fill='%23000' d='M20.65 22.3v-6.24c0-.38-.31-.68-.7-.68-.37 0-.68.3-.68.68v6.23c0 .38.3.68.69.68.38 0 .69-.3.69-.68ZM17.2 22.3l-.04-6.25a.67.67 0 1 0-1.34.01l.04 6.24a.67.67 0 1 0 1.34 0ZM12.37 16.07l.04 6.22c0 .38.3.68.67.68.37 0 .67-.3.67-.68l-.04-6.23c0-.38-.3-.68-.67-.68-.37 0-.67.31-.67.69Z'/%3E%3C/svg%3E"),pointer;
+
+        }
+        p, h1,h2,h3,h4,span{
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='25' fill='none' viewBox='0 0 13 25'%3E%3Cpath fill='%23000' stroke='%23fff' stroke-width='1.75' d='M8 18.48v-4.23h1.27v-3H8V5.8c.2-.44.5-.82.87-1.14.23-.16.52-.32.83-.44a5.4 5.4 0 0 1 1.17-.05l.87.05.05-.87.08-1.27.06-.87-.88-.06c-.7-.04-1.4 0-2.1.14l-.05.01-.06.02c-.7.25-1.29.56-1.82.95L7 2.28l-.03.02c-.16.13-.31.28-.46.42a6.93 6.93 0 0 0-.39-.38l-.03-.03-.03-.02a5.86 5.86 0 0 0-1.85-.97l-.04-.01-.04-.01a8.1 8.1 0 0 0-2.19-.16l-.87.06.06.87.08 1.27.06.88.87-.06c.43-.03.85 0 1.27.08.23.08.5.21.74.4.33.3.63.72.84 1.19v5.42H3.72v3h1.27v4.2c-.21.47-.51.89-.88 1.24-.2.14-.46.28-.75.37-.36.07-.8.1-1.22.06l-.87-.05-.06.87-.08 1.27-.06.88.87.05c.71.05 1.42 0 2.12-.14h.04l.04-.02a5.83 5.83 0 0 0 1.88-.95l.03-.02.03-.03.44-.43c.14.14.28.27.44.4l.02.02.02.01c.55.42 1.14.73 1.76.95l.05.02.06.01c.77.17 1.47.22 2.17.18l.88-.05-.05-.87-.07-1.27-.05-.87-.87.04c-.42.03-.83 0-1.24-.08-.24-.1-.52-.25-.8-.45A3.4 3.4 0 0 1 8 18.48Z'/%3E%3C/svg%3E"),default;
+        }
+        .cursor-default{
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='31' fill='none' viewBox='0 0 26 31'%3E%3Cpath fill='%23fff' fill-rule='evenodd' stroke='%23010101' stroke-linecap='square' stroke-width='2.5' d='M21.993 14.425 2.549 2.935l4.444 23.108 4.653-10.002 10.347-1.616Z' clip-rule='evenodd'/%3E%3C/svg%3E"),default;
+
+        }
+        @import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+
+
+        svg text {
+            animation: stroke 5s infinite alternate;
+            stroke-width: 2;
+            stroke: #444CF7;
+            font-size: 40px;
+        }
+        @keyframes stroke {
+            0%   {
+                fill: rgba(68,76,247,0); stroke: rgba(68,76,247,1);
+                stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+            }
+            70%  {fill: rgba(68,76,247,0); stroke: rgba(68,76,247,1); }
+            80%  {fill: rgba(68,76,247,0); stroke: rgba(68,76,247,1); stroke-width: 3; }
+            100% {
+                fill: rgba(68,76,247,1); stroke: rgba(68,76,247,0);
+                stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+            }
+        }
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #444CF7 #DFE9EB;
+        }
+
+        /* Chrome, Edge and Safari */
+        *::-webkit-scrollbar {
+            width: 10px;
+            width: 10px;
+        }
+        *::-webkit-scrollbar-track {
+            border-radius: 5px;
+            background-color: #DFE9EB;
+        }
+
+        *::-webkit-scrollbar-track:hover {
+            background-color: #B8C0C2;
+        }
+
+        *::-webkit-scrollbar-track:active {
+            background-color: #B8C0C2;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            border-radius: 16px;
+            background-color: #444CF7;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background-color: #444CF7;
+        }
+
+        *::-webkit-scrollbar-thumb:active {
+            background-color: #444CF7;
+        }
+
+        ::-moz-selection { /* Code for Firefox */
+             background: red;
+
+        }
+
+        ::selection {
+
+            background-color: mediumpurple;
+            color: white;
+
+        }
+        h2::selection {
+            background-color: tomato;
+            color: mintcream;
+        }
+
+        .bandeau-pattern{
+            background-color: #e5e5f7;
+            opacity: 0.3;
+            background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 29px ), repeating-linear-gradient( #444cf755, #444cf7 );
+        }
+        .magicpattern {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3Cfilter id=%22a%22%3E%3CfeTurbulence result=%22TURBULENCE%22 baseFrequency=%22.037%22 seed=%221%22%2F%3E%3CfeDisplacementMap in=%22SourceGraphic%22 in2=%22TURBULENCE%22 scale=%2220%22%2F%3E%3C%2Ffilter%3E%3Cfilter id=%22b%22%3E%3CfeOffset dy=%2250%22 result=%22OFFSET-3%22%2F%3E%3C%2Ffilter%3E%3Cmask id=%22c%22%3E%3Cpath fill=%22%23fff%22 d=%22M0 0h1000v1000H0z%22%2F%3E%3Ccircle cx=%22459%22 cy=%22431%22 r=%227%22 filter=%22url(%23a)%22%2F%3E%3Ccircle cx=%22396%22 cy=%22510%22 r=%228%22 filter=%22url(%23a)%22%2F%3E%3Ccircle cx=%22332%22 cy=%22691%22 r=%227%22 filter=%22url(%23a)%22%2F%3E%3Ccircle cx=%22299%22 cy=%22612%22 r=%2210%22 filter=%22url(%23a)%22%2F%3E%3Cg filter=%22url(%23b)%22%3E%3Cpath fill=%22none%22 stroke-width=%229%22 stroke=%22%23000%22 d=%22M761 652q-97.002 157.578-280 185%22 filter=%22url(%23a)%22%2F%3E%3C%2Fg%3E%3Cg filter=%22url(%23b)%22%3E%3Cpath fill=%22none%22 stroke-width=%229%22 stroke=%22%23000%22 d=%22M207 685q-103.431-194.62-15-396.5%22 filter=%22url(%23a)%22%2F%3E%3C%2Fg%3E%3Cg filter=%22url(%23b)%22%3E%3Cpath fill=%22none%22 stroke-width=%226%22 stroke=%22%23000%22 d=%22M454 156.5Q660.932 179.354 749 368%22 filter=%22url(%23a)%22%2F%3E%3C%2Fg%3E%3C%2Fmask%3E%3C%2Fdefs%3E%3Cg mask=%22url(%23c)%22%3E%3Cpath filter=%22url(%23a)%22 fill=%22%23444cf7%22 d=%22M761 652q-85 152-280 185T207 685q-79-185-15-396.5t262-132Q652 236 749 368t12 284Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+        }
+
+    </style>
+
+</head>
+<body class="cursor-default" >
+<div class="bg-pattern">
+
+
+<header style="margin-left:12px" class="d-flex flex-wrap justify-content-center py-3 mb-0">
+    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
+        <span  class="fs-2"><i class="bi bi-three-dots"></i></span>
+    </a>
+    <ul style="border: none;" class="dropdown-menu">
+        <li><button style="background:transparent;color:black;border:none " class="btn btn-dark cursor-pointer" id="btnSwitch"><i class="bi bi-circle-half"></i></button></li>
+        <li><a class="dropdown-item cursor-pointer"  href="#" id="fullscreenBtn"><i class="bi bi-arrows-fullscreen"></i></a></li>
+    </ul>
+</header>
+
+    <div class="container">
+    <div class="container-fluid pb-3">
+        <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;padding: 20px">
+            <div class="bg-body-light rounded-3 ">
+
+                <h2 class="fw-bolder">Bonjour  👋</h2><br>
+                <h3 class="fw-light">Moi c'est </h3>
+
+                    <svg style="margin-top: -100px;margin-left:100px ">
+                        <text x="50%" y="50%" dy=".25em" text-anchor="middle">
+                            Alexandre GIEL
+                        </text>
+                    </svg>
+                <p style="margin-top:-50px;font-size: 20px" class="fw-light">Développeur Web <i class="bi bi-code-slash fw-bolder"></i></p>
+               .<br>
+                <center><button type="button" style="text-align: center;padding: 10px;width: 50%;margin-top:-11px" class="testbutton cursor-pointer " data-bs-toggle="modal" data-bs-target="#NProjet"> Un projet ?  </button></center>
+
+            </div>
+            <div style="width: 100%;height:600px"  class="bg-body-light rounded-3 magicpattern">
+           <!-- <img  style="width: 80%;float:right;margin-top:45px" src="assets/img/undraw_progressive_app_m-9-ms.svg">-->
+             </div>
+        </div>
+
+        <div class="d-grid gap-3" style="grid-template-columns: 2fr 1fr;padding: 20px">
+            <div style="padding: 10px" class="bg-body-light rounded-3">
+
+
+                <span class="fs-3 fw-bolder" >Mes Projets</span><br><br>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div style="border: none;" class="card">
+                            <div class="card-body ">
+                                <h5 class="card-title">En cours</h5>
+                                <p class="card-text fs-3 fw-bolder">🚀 2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div style="border: none;" class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">En attentes</h5>
+                                <p class="card-text fs-3 fw-bolder">⏸ 1</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div style="border: none;" class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Terminés</h5>
+                                <p class="card-text fs-3 fw-bolder">✅ 4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bg-body-tertiary rounded-3">
+
+                <center><div style="margin-top: 30px" id="chart_1"></div></center>
+            </div>
+        </div>
+    </div>
+
+
+        <div style="height: 600px;" class="bg-body-light rounded-3 magicpattern">
+
+        </div>
+
+
+        <div class="d-grid gap-3" style="grid-template-columns: 2fr 2fr;padding: 20px">
+            <div style="padding: 10px" class="bg-body-tertiary rounded-3">
+                <div style="margin-left: 15px" class="card-header">
+
+                    <!-- Title -->
+                    <h4 class="card-header-title fs-4 fw-bolder">
+                        Projets en cours
+                    </h4>
+
+                </div>
+                <hr style="margin-top: -5px">
+                <table style="background-color: transparent;border-color : transparent" class="table table-hover">
+                    <tbody style="background-color: transparent">
+                    <tr>
+                        <td style="cursor: pointer" class="fs-4 fw-bolder" data-bs-toggle="modal" data-bs-target="#p1" >CCS</td>
+                        <td class="fs-4 fw-light">12-05-2023</td>
+                        <td class="fs-4 fw-light" style="width: 200px" >
+                            <div style="margin-top:3px;height: 30px" class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 40%;background-color: #444cf7"><span class=" fw-bolder " style="color: black" >40%</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fs-4 fw-bolder" >Gestion ARR</td>
+                        <td class="fs-4 fw-light">05-10-2022</td>
+                        <td class="fs-4 fw-light" style="width: 200px" >
+                            <div style="margin-top:3px;height: 30px" class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 100%;background-color: #444cf7"><span class=" fw-bolder " style="color: black" >100%</span></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="padding: 10px" class="bg-body-tertiary rounded-3">
+                <div style="margin-left: 15px" class="card-header">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal projet -->
+<div class="modal fade" id="p1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Projet</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <p class="fw-light">En cours.</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal nouveau projet-->
+<div class="modal fade" id="NProjets" tabindex="-1" aria-labelledby="NProjet" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Nouveau projet</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-grid gap-3" style="grid-template-columns: 2fr 1fr; ">
+                    <div   class="bg-body-light rounded-3">
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Description</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Date de départ</label>
+                                <input type="date" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <button type="submit" class="btn btn-dark">Enregistrer</button>
+                        </form>
+                    </div>
+                    <div class="bg-body-light rounded-3">
+                        <img style="width:100%;margin-top:50px" src="img/project_1.svg"
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script>
+    var options = {
+        series: [{
+            data: [123,453,35,56,234,190,312,98,56]
+        }],
+        chart: {
+            type: 'area',
+            height: 200,
+            sparkline: {
+                enabled: true
+            },
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        fill: {
+            opacity: 0.2,
+            type:'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.5,
+                opacityTo: 0.7,
+                stops: [0, 90, 100]
+            }
+        },
+        yaxis: {
+            min: 0
+        },
+        colors: ['#000'],
+        title: {
+            text: '',
+            offsetX: 0,
+            style: {
+                fontSize: '24px',
+            }
+        },
+        subtitle: {
+            text: ' ',
+            offsetX: 0,
+            style: {
+                fontSize: '14px',
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
+<script>
+    var options = {
+        series: [2,1,4],
+        labels: ['En cours','En attentes','Terminés'],
+        colors: ['#444cf7','#000000','#808080'],
+        chart: {
+            type: 'donut',
+            width: '100%',
+            height: '100%',
+            sparkline: {
+                enabled: true
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    margin: 0,
+                    size: '50%'
+                },
+                track: {
+                    margin: 0
+                },
+                dataLabels: {
+                    show: false
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart_1"), options);
+    chart.render();
+</script>
+<script>
+    document.getElementById('btnSwitch').addEventListener('click',()=>{
+        if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+            document.documentElement.setAttribute('data-bs-theme','light')
+        }
+        else {
+            document.documentElement.setAttribute('data-bs-theme','dark')
+        }
+    })
+
+    var fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    fullscreenBtn.addEventListener('click', function() {
+        var element = document.documentElement;
+
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        }
+    });
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
